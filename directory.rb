@@ -23,9 +23,8 @@ end
 
 def print(students)
   puts "Enter a letter to return names beginning with the selected letter"
-  letter = gets.chomp
   students.each_with_index do |student, index|
-    if student[:name][0] == letter
+    if student[:name].length < 12
       puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
