@@ -22,11 +22,11 @@ def print_header
 end
 
 def print(students)
-  puts "Enter a letter to return names beginning with the selected letter"
-  students.each_with_index do |student, index|
-    if student[:name].length < 12
-      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-    end
+#Rewrite the each() method , as above, that prints all students using while or until control flow methods (Loops).
+  index = 0
+  while index < students.length
+    puts "#{index + 1}. #{students[index][:name]} (#{students[index][:cohort]} cohort)"
+    index += 1
   end
 end
 
