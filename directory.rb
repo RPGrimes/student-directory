@@ -1,16 +1,26 @@
 def input_students
-  puts "Please enter the names of students"
-  puts "To finish, just hit return twice"
+  puts "Please enter the name of a student"
   #create an empty array
   students = []
   #get the first name
   name = gets.chomp
+  puts "Please enter the students country of birth"
+  country_of_birth = gets.chomp
+  puts "Please enter the students height in cm"
+  height = gets.chomp.to_str
+  puts "To finish, just enter blank entries for name, country of birth and height"
   #while the name is not empty, repeat this code
   while !name.empty? do 
-    students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
+    students << {name: name, cohort: :november, pob: country_of_birth, height: height}
+      puts "Now we have #{students.count} students"
     #get another student name from the user
-    name = gets.chomp
+      puts "Please enter another students name"
+      name = gets.chomp
+      puts "Please enter the students country of birth"
+      country_of_birth = gets.chomp
+      puts "Please enter the students height in cm"
+      height = gets.chomp.to_str
+      puts "To finish, just hit return twice"
   end
   #return an array of students
   students
@@ -25,7 +35,7 @@ def print(students)
 #Rewrite the each() method , as above, that prints all students using while or until control flow methods (Loops).
   index = 0
   while index < students.length
-    puts "#{index + 1}. #{students[index][:name]} (#{students[index][:cohort]} cohort)"
+    puts "#{index + 1}. #{students[index][:name]} (#{students[index][:cohort]} cohort), born in the great nation of #{students[index][:pob]} and standing #{students[index][:height]}cm tall!"
     index += 1
   end
 end
