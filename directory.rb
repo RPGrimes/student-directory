@@ -32,6 +32,7 @@ def print_footer(names)
 end
 
 students = input_students
+#call methods so code runs
 print_header
 print(students)
 print_footer(students)
