@@ -35,7 +35,7 @@ def print(students)
 #Rewrite the each() method , as above, that prints all students using while or until control flow methods (Loops).
   index = 0
   while index < students.length
-    puts "#{index + 1}. #{students[index][:name]} (#{students[index][:cohort]} cohort), born in the great nation of #{students[index][:pob]} and standing #{students[index][:height]}cm tall!"
+    puts "#{index + 1}. #{students[index][:name]} (#{students[index][:cohort]} cohort), born in the great nation of #{students[index][:pob]} and standing #{students[index][:height]}cm tall!".center(150)
     index += 1
   end
 end
