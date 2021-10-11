@@ -1,27 +1,31 @@
 def input_students
-  puts "Please enter the name of a student"
-  #create an empty array
-  students = []
-  #get the first name
-  name = gets.chomp
-  puts "Please enter the students country of birth"
-  country_of_birth = gets.chomp
-  puts "Please enter the students height in cm"
-  height = gets.chomp.to_str
-  puts "To finish, just enter blank entries for name, country of birth and height"
-  #while the name is not empty, repeat this code
-  while !name.empty? do 
-    students << {name: name, cohort: :november, pob: country_of_birth, height: height}
+    puts "Please enter the names of students and their cohorts one after the other"
+    puts "To finish, just hit return twice"
+    #create an empty array
+    students = []
+    #get the first name
+    name = gets.chomp
+    #get the cohort
+    cohort = gets.chomp.downcase.to_sym
+    #while the name is not empty, repeat this code
+    while !name.empty? do 
+      students << {name: name, cohort: cohort}
       puts "Now we have #{students.count} students"
-    #get another student name from the user
-      puts "Please enter another students name"
+      #get another student name from the user
       name = gets.chomp
-      puts "Please enter the students country of birth"
-      country_of_birth = gets.chomp
-      puts "Please enter the students height in cm"
-      height = gets.chomp.to_str
-      puts "To finish, just hit return twice"
-  end
+      cohort = gets.chomp.downcase.to_sym
+      months = [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december]
+      if months.include? cohort
+        cohort
+      end
+      if cohort.empty?
+        break
+      end
+      while !months.include? cohort do
+        puts "Enter a valid cohort name (i.e. a month of the year)"
+        cohort = gets.chomp.downcase.to_sym
+      end
+    end
   #return an array of students
   students
 end
@@ -32,13 +36,11 @@ def print_header
 end
 
 def print(students)
-#Rewrite the each() method , as above, that prints all students using while or until control flow methods (Loops).
-  index = 0
-  while index < students.length
-    puts "#{index + 1}. #{students[index][:name]} (#{students[index][:cohort]} cohort), born in the great nation of #{students[index][:pob]} and standing #{students[index][:height]}cm tall!".center(150)
-    index += 1
+  puts "Enter a letter to return names beginning with the selected letter"
+  students.each_with_index do |student, index|
+      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)".center(75)
   end
-end
+end  
 
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
