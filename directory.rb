@@ -37,6 +37,12 @@ end
 
 def print(students)
 #print students group by cohort
+if !students.empty? 
+  students
+else
+  puts "There are no students attending the academy :("
+end
+
 cohorts = students.map do |student|
   student[:cohort]
 end 
@@ -51,6 +57,7 @@ end
 def print_footer(names)
 if names.count == 1
   puts "Overall, we have #{names.count} great student"
+elsif names.count == 0
 else
   puts "Overall, we have #{names.count} great students"
 end
