@@ -4,16 +4,16 @@ def input_students
   #create an empty array
   students = []
   #get the first name
-  name = gets.chomp
+  name = gets.strip
   #get the cohort
-  cohort = gets.chomp.downcase.to_sym
+  cohort = gets.strip.downcase.to_sym
   #while the name is not empty, repeat this code
   while !name.empty? do 
     students << {name: name, cohort: cohort}
     puts "Now we have #{students.count} students"
     #get another student name from the user
-    name = gets.chomp
-    cohort = gets.chomp.downcase.to_sym
+    name = gets.strip
+    cohort = gets.strip.downcase.to_sym
     months = [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december]
     if months.include? cohort
       cohort
@@ -23,7 +23,7 @@ def input_students
     end
     while !months.include? cohort do
       puts "Enter a valid cohort name (i.e. a month of the year)"
-      cohort = gets.chomp.downcase.to_sym
+      cohort = gets.strip.downcase.to_sym
     end
   end
 #return an array of students
