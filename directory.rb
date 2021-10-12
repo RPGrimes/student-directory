@@ -4,16 +4,16 @@ def input_students
   puts "Please enter the names of students and their cohorts one after the other"
   puts "To finish, just hit return twice"
   #get the first name
-  name = gets.chomp
+  name = STDIN.gets.chomp
   #get the cohort
-  cohort = gets.chomp.downcase.to_sym
+  cohort = STDIN.gets.chomp.downcase.to_sym
   #while the name is not empty, repeat this code
   while !name.empty? do 
     @students << {name: name, cohort: cohort}
     puts "Now we have #{@students.count} students"
     #get another student name from the user
-    name = gets.chomp
-    cohort = gets.chomp.downcase.to_sym
+    name = STDIN.gets.chomp
+    cohort = STDIN.gets.chomp.downcase.to_sym
     months = [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december]
     if cohort.empty?
       break
@@ -30,9 +30,8 @@ end
 
 def interactive_menu
   loop do
-    #1. print the menu and ask the user what to do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
@@ -113,9 +112,9 @@ def save_students
   file.close
 end
 
-def load_students
+def load_students(filename = "students.csv")
   #open the file
-  file = File.open("students.csv", "r")
+  file = File.open(filename, "r")
   #iterate over the lines of the file
   file.readlines.each do |line|
   name, cohort = line.chomp.split(",")
@@ -125,4 +124,17 @@ def load_students
   file.close
 end
 
+def try_load_students
+  filename = ARGV.first
+  return if filename.nil?
+  if File.exists?(filename)
+    load_students(filename)
+      puts "Loaded #{@students.count} from #{filename}"
+  else
+    puts "Sorry #{filename} doesn't exist"
+    exit
+  end
+end
+
+try_load_students
 interactive_menu
